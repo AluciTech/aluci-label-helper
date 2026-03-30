@@ -13,34 +13,45 @@ usage() {
   echo "  all        Install for both"
 }
 
-install_agents() {
-  echo "Downloading AGENTS.md..."
-  curl -fsSL "$BASE_URL/AGENTS.md" -o AGENTS.md
+confirm_overwrite() {
+  local file="$1"
+  if [ -f "$file" ]; then
+    printf "%s already exists. Overwrite? [y/N] " "$file"
+    read -r answer </dev/tty
+    case "$answer" in
+      [yY][eE][sS]|[yY]) return 0 ;;
+      *) echo "Skipping $file."; return 1 ;;
+    esac
+  fi
+  return 0
 }
 
 install_claude() {
   mkdir -p .claude/commands
-  echo "Downloading .claude/commands/pre-review.md..."
-  curl -fsSL "$BASE_URL/.claude/commands/pre-review.md" -o .claude/commands/pre-review.md
+  local dest=".claude/commands/pre-review.md"
+  if confirm_overwrite "$dest"; then
+    echo "Downloading $dest..."
+    curl -fsSL "$BASE_URL/commands/pre-review.md" -o "$dest"
+  fi
 }
 
 install_opencode() {
   mkdir -p .opencode/commands
-  echo "Downloading .opencode/commands/pre-review.md..."
-  curl -fsSL "$BASE_URL/.opencode/commands/pre-review.md" -o .opencode/commands/pre-review.md
+  local dest=".opencode/commands/pre-review.md"
+  if confirm_overwrite "$dest"; then
+    echo "Downloading $dest..."
+    curl -fsSL "$BASE_URL/commands/pre-review.md" -o "$dest"
+  fi
 }
 
 case "$TOOL" in
   claude)
-    install_agents
     install_claude
     ;;
   opencode)
-    install_agents
     install_opencode
     ;;
   all)
-    install_agents
     install_claude
     install_opencode
     ;;

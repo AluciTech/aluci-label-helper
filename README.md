@@ -15,7 +15,7 @@ This is **not** an automated reviewer, it surfaces facts and flags concerns. The
 
 ### Requirements
 
-- [Claude Code](https://docs.anthropic.com/en/docs/claude-code) CLI or any coding agent that supports the [AGENTS.md](AGENTS.md) convention (e.g., [OpenCode](https://opencode.ai/))
+- [Claude Code](https://docs.anthropic.com/en/docs/claude-code) CLI or [OpenCode](https://opencode.ai/)
 
 ### Installation
 
@@ -39,7 +39,7 @@ curl -fsSL https://raw.githubusercontent.com/AluciTech/aluci-label-reviewer/refs
 curl -fsSL https://raw.githubusercontent.com/AluciTech/aluci-label-reviewer/refs/heads/main/install.sh | bash -s -- all
 ```
 
-This downloads `AGENTS.md` and the `/pre-review` command into the current directory. No other dependencies are required.
+This downloads the `/pre-review` command into the current directory. No other dependencies are required.
 
 ## Usage
 
