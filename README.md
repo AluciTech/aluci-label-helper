@@ -84,8 +84,6 @@ Each command is a standalone `.md` file living in your tool's commands directory
 
 3. The `release` workflow will automatically create a GitHub Release with `install.sh` attached as a downloadable asset.
 
-> **First-time setup**: go to **Settings > Actions > General** on the repo and ensure *"Read and write permissions"* is selected under **Workflow permissions** so the workflow can create releases.
-
 ## License
 
 This project is licensed under the Apache License (Version 2.0).
